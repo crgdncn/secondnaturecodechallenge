@@ -15,8 +15,6 @@ class WidgetController extends Controller
      */
     public function index()
     {
-        Gate::authorize('manage-widgets');
-
         $widgets = Widget::all();
         return view('widget.index', compact('widgets'));
     }
@@ -28,8 +26,6 @@ class WidgetController extends Controller
      */
     public function create()
     {
-        Gate::authorize('manage-widgets');
-
         $action_route =  route('widget.store', [], false);
         return view('widget.create', compact('action_route'));
     }
@@ -42,8 +38,6 @@ class WidgetController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('manage-widgets');
-
         $request->validate([
             'sku' => ['required', 'string', 'max:32'],
             'name' => ['required', 'string', 'max:255'],
@@ -62,8 +56,6 @@ class WidgetController extends Controller
      */
     public function edit(Widget $widget)
     {
-        Gate::authorize('manage-widgets');
-
         $sku = $widget->sku;
         $name = $widget->name;
         $description = $widget->description;
@@ -82,8 +74,6 @@ class WidgetController extends Controller
      */
     public function update(Request $request, Widget $widget)
     {
-        Gate::authorize('manage-widgets');
-
         $request->validate([
             'sku' => ['required', 'string', 'max:32'],
             'name' => ['required', 'string', 'max:255'],

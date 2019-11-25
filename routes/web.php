@@ -26,5 +26,5 @@ Route::middleware(['verified'])->group(function () {
         'show', 'edit', 'update'
     ]);
 
-    Route::resource('widget', 'WidgetController')->except('show', 'destroy');
+    Route::resource('widget', 'WidgetController')->except('show', 'destroy')->middleware('can:manage-widgets');
 });
