@@ -29,7 +29,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{asset('images/logo.jpeg')}}" class="widget-company-logo"> {{ config('app.name', 'Widget Code Challenge') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -43,22 +43,22 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">{{ __('Home') }}</a>
+                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">Home/a>
                             </li>
                             <li class="nav-item">
                                 <form id="logout-form" method="POST" action="{{route('logout', [], false)}}">
                                     @csrf
                                 </form>
-                                <a class="nav-link"  onclick="logout(); return false;">{{ __('Logout') }}</a>
+                                <a class="nav-link"  onclick="logout(); return false;">Logout</a>
                             </li>
                         @endguest
                     </ul>
