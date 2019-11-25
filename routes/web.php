@@ -25,4 +25,6 @@ Route::middleware(['verified'])->group(function () {
     Route::resource('customer', 'CustomerController')->only([
         'show', 'edit', 'update'
     ]);
+
+    Route::resource('widget', 'WidgetController')->except('show', 'destroy');
 });

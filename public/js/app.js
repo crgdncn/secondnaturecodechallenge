@@ -36985,8 +36985,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/crgdncn/code/laravel/valet/SecondNatureCodeChallenge/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/crgdncn/code/laravel/valet/SecondNatureCodeChallenge/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/cduncan/Code/github/secondnaturecodechallenge/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/cduncan/Code/github/secondnaturecodechallenge/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

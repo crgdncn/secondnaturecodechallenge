@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Widget;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
     protected $table = 'users';
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -23,15 +25,20 @@ class Customer extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_verified_at',
     ];
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id');
+    }
+
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * Widgets associated with this customer
+     * @return @return Illuminate\Database\Eloquent\Relations\BelongsToMany | Illuminate\Database\Eloquent\Collection
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function widgets()
+    {
+        return $this->belongsToMany(Widget::class);
+    }
 }
