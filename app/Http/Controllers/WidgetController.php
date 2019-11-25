@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Widget;
 
@@ -14,6 +15,8 @@ class WidgetController extends Controller
      */
     public function index()
     {
+        Gate::authorize('manage-widgets');
+
         $widgets = Widget::all();
         return view('widget.index', compact('widgets'));
     }
@@ -25,6 +28,8 @@ class WidgetController extends Controller
      */
     public function create()
     {
+        Gate::authorize('manage-widgets');
+
         $action_route =  route('widget.store', [], false);
         return view('widget.create', compact('action_route'));
     }
@@ -37,6 +42,8 @@ class WidgetController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('manage-widgets');
+
         $request->validate([
             'sku' => ['required', 'string', 'max:32'],
             'name' => ['required', 'string', 'max:255'],
@@ -44,20 +51,8 @@ class WidgetController extends Controller
 
         Widget::create($request->input());
 
-        $widgets = Widget::all();
         return redirect(route('widget.index', [], false));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -67,6 +62,8 @@ class WidgetController extends Controller
      */
     public function edit(Widget $widget)
     {
+        Gate::authorize('manage-widgets');
+
         $sku = $widget->sku;
         $name = $widget->name;
         $description = $widget->description;
@@ -85,6 +82,8 @@ class WidgetController extends Controller
      */
     public function update(Request $request, Widget $widget)
     {
+        Gate::authorize('manage-widgets');
+
         $request->validate([
             'sku' => ['required', 'string', 'max:32'],
             'name' => ['required', 'string', 'max:255'],
@@ -92,18 +91,6 @@ class WidgetController extends Controller
 
         $widget->update($request->input());
 
-        $widgets = Widget::all();
         return redirect(route('widget.index'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
 }
