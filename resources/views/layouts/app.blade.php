@@ -52,7 +52,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">Home/a>
+                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <form id="logout-form" method="POST" action="{{route('logout', [], false)}}">

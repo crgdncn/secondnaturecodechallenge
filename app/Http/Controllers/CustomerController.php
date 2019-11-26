@@ -61,6 +61,6 @@ class CustomerController extends Controller
         $customer->password = \Hash::make($request->input('password'));
         $customer->save();
 
-        return view('/home');
+        return redirect(route('customer.show', [$customer->id], false));
     }
 }
