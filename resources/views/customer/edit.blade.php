@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Customer</div>
+                <div class="card-header">Account Details</div>
                 @include('partials.user_form')
             </div>
         </div>

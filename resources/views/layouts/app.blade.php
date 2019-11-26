@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    {{-- CSRF Token      --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Code Challenge') }}</title>
 
-    <!-- Fonts -->
+    {{-- Fonts  --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
@@ -50,6 +50,12 @@
                                 <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">Home</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('customer.edit', [Auth::user()->id], false) }}">My Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('widget.index', [], false) }}">Admin</a>
+                            </li>
+                            <li class="nav-item">
                                 <form id="logout-form" method="POST" action="{{route('logout', [], false)}}">
                                     @csrf
                                 </form>
@@ -66,13 +72,35 @@
         </main>
     </div>
 
-    <!-- Scripts -->
+    {{-- Modal --}}
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header th-color">
+                    <div class="mr-auto">
+                        <h4 id="modal-header" class="modal-title">SNCC</h4>
+                    </div>
+                    <div class="ml-auto">
+                        <button id="modal-dismiss-button" type="button" class="close" style="font-size: 1.5em;" data-dismiss="modal">
+                            &times;
+                        </button>
+                    </div>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <p>Modal Body</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal --}}
+
+    {{-- Scripts --}}
     <script src="{{mix('/js/app.js')}}"></script>
-    <script type="text/javascript">
-        function logout() {
-            document.getElementById('logout-form').submit();
-        }
-    </script>
+    <script src="{{mix('/js/global.js')}}"></script>
     @stack('scripts')
 </body>
 </html>

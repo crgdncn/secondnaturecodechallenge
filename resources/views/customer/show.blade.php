@@ -6,14 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <span class="customer-name">
-                        {{ $customer->first_name . ' ' . $customer->last_name }}
-                    </span>
-                    <a class="ml-2 edit-details" href="{{ route('customer.edit', [$customer->id], false) }}">(edit account details</a>)
+                    My Widgets
                 </div>
-
-                <h5 class="ml-2 mt-2">My Widgets<h5>
-
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -24,11 +18,11 @@
                                 Name
                             </th>
                             <th>
-                                <a class="add-widget" href="#">Add Widget</a>
+                                <a class="btn btn-primary add-widget" href="#" onclick="getWidgetList('{{ route('widget.list', [], false)}}')">Add Widget</a>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         @foreach($customer->widgets as $widget)
                             @include('customer.partials.widget_row')
                         @endforeach
@@ -42,11 +36,6 @@
 
 @push('styles')
      <style>
-        .customer-name {
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
         .edit-details {
             font-size: 0.8rem;
         }
@@ -61,7 +50,8 @@
         }
 
         .add-widget {
-            font-size: 0.6rem;
+            font-size: 0.8rem;
+            /*color: red;*/
         }
     </style>
 @endpush

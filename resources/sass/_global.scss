@@ -1,5 +1,3 @@
-/* I have not made any attempt to change the default styles provided by a new laravel application welcome page */
-
 html, body {
     background-color: #fff;
     color: #636b6f;
@@ -53,4 +51,9 @@ html, body {
 
 .widget-company-logo {
     max-width: 100px;
+}
+
+.th-color {
+    background-color: #007bff;
+    color: white;
 }

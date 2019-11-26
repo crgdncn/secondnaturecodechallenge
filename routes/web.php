@@ -27,4 +27,8 @@ Route::middleware(['verified'])->group(function () {
     ]);
 
     Route::resource('widget', 'WidgetController')->except('show', 'destroy')->middleware('can:manage-widgets');
+
+    Route::get('/widget/list', 'WidgetController@list')->name('widget.list');
+    Route::post('/customer/{customer}/addwidget', 'CustomerController@addWidget')->name('customer.addwidget');
+    Route::post('/customer/{customer}/removewidget', 'CustomerController@removeWidget')->name('customer.removewidget');
 });

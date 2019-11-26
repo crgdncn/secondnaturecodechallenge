@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Widget;
 use Illuminate\Http\Request;
 
 /**
@@ -62,5 +63,32 @@ class CustomerController extends Controller
         $customer->save();
 
         return redirect(route('customer.show', [$customer->id], false));
+    }
+
+    /**
+     * Add a widget to the customers list
+     *
+     * @param Request  $request
+     * @param Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function addWidget(Request $request, Customer $customer)
+    {
+        $widget = Widget::find($request->widget_id);
+        $customer->widgets()->attach($widget);
+        return view('customer.partials.widget_row', compact('customer', 'widget'));
+    }
+
+    /**
+     * Remove a widget from a customers list
+     *
+     * @param  Request  $request
+     * @param  Customer $customer
+     * @return void
+     */
+    public function removeWidget(Request $request, Customer $customer)
+    {
+        $widget = Widget::find($request->widget_id);
+        $customer->widgets()->detach($widget);
     }
 }

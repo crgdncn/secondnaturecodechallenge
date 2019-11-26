@@ -83,4 +83,17 @@ class WidgetController extends Controller
 
         return redirect(route('widget.index'));
     }
+
+    /**
+     * A list of available widgets that can be added
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        $customer = \Auth::user()->customer;
+        $alreadyAdded = $customer->widgets->pluck('id');
+        $widgets = Widget::whereNotIn('id', $alreadyAdded)->orderBy('name')->get();
+        return view('widget.list', compact('customer', 'widgets'));
+    }
 }
