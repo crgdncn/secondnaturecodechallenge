@@ -16,10 +16,11 @@ Route::get('/', function () {
 });
 
 // New users must verify their email when registering
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => false]);
 
 // All users must have had there email verified
-Route::middleware(['verified'])->group(function () {
+// Route::middleware(['verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('customer', 'CustomerController')->only([
