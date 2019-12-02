@@ -14,4 +14,4 @@ npm run dev
 
 php artisan migrate
 
-php artisan db:migrate
+php artisan db:seed
