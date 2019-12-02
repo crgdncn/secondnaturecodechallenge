@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Widgets</h3>
-                    <span class="new-widget"><a href="{{route('widget.create', [], false)}}">Add</a></span>
+                    <span class="new-widget"><a class="btn btn-primary" href="{{route('widget.create', [], false)}}">Add</a></span>
                 </div>
                 <table class="table table-striped">
                     <thead>
