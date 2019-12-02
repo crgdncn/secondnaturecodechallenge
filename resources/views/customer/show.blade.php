@@ -51,7 +51,7 @@
 
         .add-widget {
             font-size: 0.8rem;
-            /*color: red;*/
+            float: right;
         }
     </style>
 @endpush
