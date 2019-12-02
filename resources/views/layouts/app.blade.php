@@ -52,9 +52,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('customer.edit', [Auth::user()->id], false) }}">My Account</a>
                             </li>
+
+                            @can('manage-widgets', Auth::user())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('widget.index', [], false) }}">Admin</a>
                             </li>
+                            @endcan
                             <li class="nav-item">
                                 <form id="logout-form" method="POST" action="{{route('logout', [], false)}}">
                                     @csrf
