@@ -1,6 +1,5 @@
                 <div class="card-body">
                     <form method="POST" action="{!! $action_route !!}">
-                        {{$action_route}}
                         @csrf
                         @if(Request::segment(3) == 'edit')
                             @method('patch')
