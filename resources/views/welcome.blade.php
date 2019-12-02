@@ -15,15 +15,18 @@
                         There are two kinds of users: customers and admins. Both are defined in the users table. Admins have the admin flag set to true. Customers have their own model, otherwise everyone can be defined in a User model.
                     </p>
                     <p>
-                        A customer/admin *must* register by themselves, they cannot be created by an admin. However to become an admin, another admin must grant a customer admin permissions. Seed the database (php artisan db:seed) to create the first admin user [admin@sncc.test / password]. <br><br>
+                        A customer/admin *must* register by themselves, they cannot be created by an other admin. Make sure you have seeded the database to create the first admin account [admin@sncc.test / password]. <br>
+                    </p>
+                    <p>
+
                     </p>
                     <p>
                         Admins and only admins can CRUD widgets. <br>
-                        Admins can disable customers.
+                        Create an admin interface to manage users [optional].<br>
                     </p>
                     <p>
                         Customers can add/remove widgets to/from their account.<br>
-                        Customers can ship widgets to any address they have defined.
+                        Customers can ship widgets to any address they have defined [optional].
                     </p>
                     <p>
                         This is *not* a shopping cart application.
