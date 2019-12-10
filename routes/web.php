@@ -27,6 +27,11 @@ Route::middleware(['auth'])->group(function () {
         'show', 'edit', 'update'
     ]);
 
+    Route::get('/customer/{customer}/address', 'AddressController@new')->name('customer.address.new');
+    Route::get('/customer/{customer}/address/{address}', 'AddressController@edit')->name('customer.address.edit');
+    Route::post('/customer/{customer}/address', 'AddressController@save')->name('customer.address.save');
+    Route::patch('/customer/{customer}/address/{address}', 'AddressController@update')->name('customer.address.update');
+
     Route::resource('widget', 'WidgetController')->except('show', 'destroy')->middleware('can:manage-widgets');
 
     Route::get('/widget/list', 'WidgetController@list')->name('widget.list');

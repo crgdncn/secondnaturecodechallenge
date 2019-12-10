@@ -37,7 +37,14 @@ class CustomerController extends Controller
         $email = $customer->email;
         $form_route = route('customer.update', [$customer->id], false);
 
-        return view('customer.edit', compact('id', 'first_name', 'last_name', 'email', 'form_route'));
+        if ($customer->address) {
+            $address_route = route('customer.address.edit', [$customer, $customer->address], false);
+        } else {
+            $address_route = route('customer.address.new', [$customer], false);
+        }
+
+
+        return view('customer.edit', compact('id', 'first_name', 'last_name', 'email', 'form_route', 'address_route'));
     }
 
     /**

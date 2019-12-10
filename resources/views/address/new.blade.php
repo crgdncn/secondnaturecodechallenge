@@ -6,12 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Account Details
-                    <span style="float: right;">
-                        <a href="{{$address_route}}">Address</a>
-                    </span>
+                    New Address
                 </div>
-                @include('partials.user_form')
+                @include('address.partials.address_form')
             </div>
         </div>
     </div>
