@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Address;
 use App\Models\Widget;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -40,5 +41,10 @@ class Customer extends Model
     public function widgets()
     {
         return $this->belongsToMany(Widget::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }
