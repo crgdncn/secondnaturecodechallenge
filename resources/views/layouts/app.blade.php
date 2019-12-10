@@ -62,7 +62,7 @@
                                 <form id="logout-form" method="POST" action="{{route('logout', [], false)}}">
                                     @csrf
                                 </form>
-                                <a class="nav-link"  onclick="logout(); return false;">Logout</a>
+                                <a class="nav-link" href="#"  onclick="logout(); return false;">Logout</a>
                             </li>
                         @endguest
                     </ul>
