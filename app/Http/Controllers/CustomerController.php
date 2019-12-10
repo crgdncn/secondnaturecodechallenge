@@ -20,7 +20,8 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('customer.show', compact('customer'));
+        $allowEdit = $customer->id == \Auth::user()->id;
+        return view('customer.show', compact('customer', 'allowEdit'));
     }
 
     /**
@@ -31,6 +32,10 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
+        if (\Gate::denies('edit-user', $customer)) {
+            abort(404);
+        }
+
         $id = $customer->id;
         $first_name = $customer->first_name;
         $last_name = $customer->last_name;
@@ -44,7 +49,6 @@ class CustomerController extends Controller
             $address_route = route('customer.address.new', [$customer], false);
         }
 
-
         return view('customer.edit', compact('id', 'first_name', 'last_name', 'email', 'form_route', 'address_route', 'address'));
     }
 
@@ -57,6 +61,10 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        if (\Gate::denies('edit-user', $customer)) {
+            abort(404);
+        }
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -82,6 +90,10 @@ class CustomerController extends Controller
      */
     public function addWidget(Request $request, Customer $customer)
     {
+        if (\Gate::denies('edit-user', $customer)) {
+            abort(404);
+        }
+
         $widget = Widget::find($request->widget_id);
         $customer->widgets()->attach($widget);
         return view('customer.partials.widget_row', compact('customer', 'widget'));
@@ -96,6 +108,10 @@ class CustomerController extends Controller
      */
     public function removeWidget(Request $request, Customer $customer)
     {
+        if (\Gate::denies('edit-user', $customer)) {
+            abort(404);
+        }
+
         $widget = Widget::find($request->widget_id);
         $customer->widgets()->detach($widget);
     }

@@ -47,7 +47,10 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">Home</a>
+                                <a class="nav-link" href="{{ route('home', [], false) }}">Customers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('customer.show', [Auth::user()->id], false) }}">My Widgets</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('customer.edit', [Auth::user()->id], false) }}">My Account</a>

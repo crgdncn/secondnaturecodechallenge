@@ -6,7 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    My Widgets
+                    @if($allowEdit)
+                        My Widgets
+                    @else
+                        {{$customer->first_name}} {{$customer->last_name}}'s Widgets
+                    @endif
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -18,7 +22,9 @@
                                 Name
                             </th>
                             <th>
+                                @if($allowEdit)
                                 <a class="btn btn-primary add-widget" href="#" onclick="getWidgetList('{{ route('widget.list', [], false)}}')">Add Widget</a>
+                                @endif
                             </th>
                         </tr>
                     </thead>

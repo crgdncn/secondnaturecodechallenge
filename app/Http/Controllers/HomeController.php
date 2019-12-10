@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return view('home');
-        return redirect(route('customer.show', [\Auth::user()->id]));
+        $customers = \App\Models\Customer::all();
+        return view('home', compact('customers'));
     }
 }
