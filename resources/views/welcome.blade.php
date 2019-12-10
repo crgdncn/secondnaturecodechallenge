@@ -18,15 +18,12 @@
                         A customer/admin *must* register by themselves, they cannot be created by an other admin. Make sure you have seeded the database to create the first admin account [admin@sncc.test / password]. <br>
                     </p>
                     <p>
-
-                    </p>
-                    <p>
                         Admins and only admins can CRUD widgets. <br>
                         Create an admin interface to manage users [optional].<br>
                     </p>
                     <p>
                         Customers can add/remove widgets to/from their account.<br>
-                        Customers can ship widgets to any address they have defined [optional].
+                        Customers can ship widgets to an address they have defined [optional].
                     </p>
                     <p>
                         This is *not* a shopping cart application.
