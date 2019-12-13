@@ -24,37 +24,13 @@
                 </div>
                 @if($address)
                     <div class="row">
-                        <div class="col-md-4 text-md-right py-2">Line One</div>
-                        <div class="col-md-6 py-2">
+                        <div class="col-md-6 py-2 pl-5">
                             {{$address->address_1}}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 text-md-right py-2">Line Two</div>
-                        <div class="col-md-6 py-2">
-                            {{$address->address_2}}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 text-md-right py-2">City</div>
-                        <div class="col-md-6 py-2">
-                            {{$address->city}}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 text-md-right py-2">State</div>
-                        <div class="col-md-6 py-2">
-                        {{$address->state}}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 text-md-right py-2">Post Code</div>
-                        <div class="col-md-6 py-2">
-                            {{$address->post_code}}
+                            @if($address->address_2)
+                               <br> {{$address->address_2}}
+                            @endif
+                            <br>
+                            {{$address->city}}, {{$address->state}} {{$address->post_code}}
                         </div>
                     </div>
                 @endif
