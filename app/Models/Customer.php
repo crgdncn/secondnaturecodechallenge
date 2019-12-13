@@ -29,6 +29,10 @@ class Customer extends Model
         'password', 'remember_token', 'email_verified_at',
     ];
 
+    protected $casts = [
+        'admin' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'id');
@@ -46,5 +50,22 @@ class Customer extends Model
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
+    public function makeAdmin()
+    {
+        $this->admin = true;
+        $this->save();
+    }
+
+    public function removeAdmin()
+    {
+        $this->admin = false;
+        $this->save();
     }
 }

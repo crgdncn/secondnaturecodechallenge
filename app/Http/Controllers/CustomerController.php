@@ -104,7 +104,7 @@ class CustomerController extends Controller
      *
      * @param  Request  $request
      * @param  Customer $customer
-     * @return void
+     * @return @return \Illuminate\Http\Response
      */
     public function removeWidget(Request $request, Customer $customer)
     {
@@ -114,5 +114,33 @@ class CustomerController extends Controller
 
         $widget = Widget::find($request->widget_id);
         $customer->widgets()->detach($widget);
+    }
+
+    /**
+     *
+     * @param  Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function makeAdmin(Customer $customer)
+    {
+        if (\Gate::denies('admin_customers')) {
+            abort(401);
+        }
+
+        $customer->makeAdmin();
+    }
+
+    /**
+     *
+     * @param  Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function removeAdmin(Customer $customer)
+    {
+        if (\Gate::denies('admin_customers')) {
+            abort(401);
+        }
+
+        $customer->removeAdmin();
     }
 }

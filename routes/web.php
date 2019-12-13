@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/customer/{customer}/address/{address}', 'AddressController@edit')->name('customer.address.edit');
     Route::post('/customer/{customer}/address', 'AddressController@save')->name('customer.address.save');
     Route::patch('/customer/{customer}/address/{address}', 'AddressController@update')->name('customer.address.update');
+    Route::post('/customer/{customer}/makeadmin', 'CustomerController@makeAdmin')->name('customer.makeadmin');
+    Route::post('/customer/{customer}/removeadmin', 'CustomerController@removeAdmin')->name('customer.removeadmin');
 
     Route::resource('widget', 'WidgetController')->except('show', 'destroy')->middleware('can:manage-widgets');
 

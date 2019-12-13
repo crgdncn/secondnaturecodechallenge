@@ -13,6 +13,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Admin</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             @foreach($customers as $customer)
@@ -23,8 +24,18 @@
                                 <td>
                                     {{$customer->email}}
                                 </td>
+                                <td id="admin_{{$customer->id}}">
+                                    {{$customer->isAdmin() ? 'Y' : 'N'}}
+                                </td>
                                 <td>
-                                    {{$customer->admin ? 'Y' : 'N'}} {{$customer->id}}
+                                    @if($customer->id != \Auth::user()->id)
+                                        @can('admin_customers')
+                                            <a id="remove-admin-{{$customer->id}}"  class="{{$customer->isAdmin() ? '' : 'hidden'}}" href="#" onclick="removeAdmin({{$customer->id}}); return false;">Remove Admin</a>
+                                            <a id="make-admin-{{$customer->id}}"  class="{{$customer->isAdmin() ? 'hidden' : ''}}" href="#" onclick="makeAdmin({{$customer->id}}); return false;">Make Admin</a>
+                                        @endcan
+                                    @else
+                                        --
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -36,3 +47,42 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    function makeAdmin(customerId) {
+        url = '/customer/' + customerId + '/makeadmin';
+        data = {};
+
+        var jqxhr = $.post(url, data)
+        .done(function(response) {
+            $('#admin_' + customerId).text('Y');
+            $('#make-admin-' + customerId).toggleClass('hidden');
+            $('#remove-admin-' + customerId).toggleClass('hidden');
+
+        }).fail(function(response) {
+            alert('Ooops, something went wrong!');
+        })
+    }
+
+    function removeAdmin(customerId) {
+        url = '/customer/' + customerId + '/removeadmin';
+        data = {};
+
+        var jqxhr = $.post(url, data)
+        .done(function(response) {
+            $('#admin_' + customerId).text('N');
+            $('#make-admin-' + customerId).toggleClass('hidden');
+            $('#remove-admin-' + customerId).toggleClass('hidden');
+        }).fail(function(response) {
+            alert('Ooops, something went wrong!');
+        })
+    }
+</script>
+@endpush
+
+@push('styles')
+<style type="text/css">
+    .hidden {display: none;}
+</style>
+@endpush
