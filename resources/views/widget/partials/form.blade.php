@@ -55,7 +55,7 @@
 
                             <div class="col-md-6">
 
-                                <input id="active" type="checkbox" class="form-control @error('active') is-invalid @enderror" name="active" {{ ($active ?? false) ? 'checked' : ''}}>
+                                <input id="active" type="checkbox" class="form-control @error('active') is-invalid @enderror" name="active" value="1" {{ ($active ?? false) ? 'checked' : ''}}>
 
                                 @error('active')
                                     <span class="invalid-feedback" role="alert">
