@@ -21,7 +21,7 @@
                             <th>
                                 Name
                             </th>
-                            <th>
+                            <th style="text-align:center">
                                 Active
                             </th>
                         </tr>
@@ -40,10 +40,8 @@
                             <td>
                                 {{$widget->name}}
                             </td>
-                            <td>
-                                {{$widget->description}}
-                            </td>
-                            <td>
+
+                            <td align="center">
                                 {{$widget->active}}
                             </td>
                         </tr>
