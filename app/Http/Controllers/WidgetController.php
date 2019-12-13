@@ -79,7 +79,9 @@ class WidgetController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $widget->update($request->input());
+        $active = $request->input('active', false);
+        $data = array_merge($request->input(), ['active' => $active]);
+        $widget->update($data);
 
         return redirect(route('widget.index'));
     }
@@ -93,7 +95,7 @@ class WidgetController extends Controller
     {
         $customer = \Auth::user()->customer;
         $alreadyAdded = $customer->widgets->pluck('id');
-        $widgets = Widget::whereNotIn('id', $alreadyAdded)->orderBy('name')->get();
+        $widgets = Widget::whereNotIn('id', $alreadyAdded)->active()->orderBy('name')->get();
         return view('widget.list', compact('customer', 'widgets'));
     }
 }

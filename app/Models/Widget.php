@@ -33,4 +33,24 @@ class Widget extends Model
     {
         return $this->belongsToMany(Customer::class);
     }
+
+    /**
+     * List all active models
+     *
+     * @return  Collection
+     */
+    public static function active()
+    {
+        return static::where('active', '=', true)->get();
+    }
+
+    /**
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', '=', true);
+    }
 }
